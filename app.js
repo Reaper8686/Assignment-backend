@@ -8,6 +8,7 @@ dotenv.config();
 
 //Routes
 const UserRoutes = require("./routes/user");
+const ProductRoute = require("./routes/product");
 
 mongoose
   .connect(process.env.DATABASE)
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", UserRoutes);
+app.use("/api", ProductRoute);
 
 //port
 const port = process.env.PORT || 8000;
