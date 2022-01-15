@@ -9,6 +9,7 @@ dotenv.config();
 //Routes
 const UserRoutes = require("./routes/user");
 const ProductRoute = require("./routes/product");
+const OrderRoutes = require("./routes/order");
 
 mongoose
   .connect(process.env.DATABASE)
@@ -23,6 +24,7 @@ app.use(cors());
 
 app.use("/api", UserRoutes);
 app.use("/api", ProductRoute);
+app.use("/api", OrderRoutes);
 
 //port
 const port = process.env.PORT || 8000;
