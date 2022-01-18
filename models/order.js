@@ -13,14 +13,13 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
-    amount: {type: Number},
     address: String,
     city: String,
     state: String,
     pincode: Number,
     status: {
       type: String,
-      default: "Delivered",
+      default: "Shipping",
     },
     user: {
       type: ObjectId,

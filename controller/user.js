@@ -6,8 +6,8 @@ exports.registerUser = (req, res) => {
     (err, user) => {
       if (err) {
         return res.status(400).json({
-          success: true,
-          err: err.message,
+          success: false,
+          message: err.message,
         });
       }
       res.json({
@@ -32,22 +32,22 @@ exports.loginUser = (req, res) => {
   User.findOne({email}, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "User Email not found",
+        success: false,
+        message: "User Email not found",
       });
     }
-    console.log(password);
-    console.log(user.camparePassword(password));
     if (!user.camparePassword(password)) {
       return res.status(401).json({
-        error: "email and password dont match",
+        success: false,
+        message: "email and password dont match",
       });
     }
 
     const token = user.getJWToken();
-
+    const {_id, name, email} = user;
     res.status(200).json({
       success: true,
-      user,
+      user: {_id, name, email},
       token,
     });
   });
